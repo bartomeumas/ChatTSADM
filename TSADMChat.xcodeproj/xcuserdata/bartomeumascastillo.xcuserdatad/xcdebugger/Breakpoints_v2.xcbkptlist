@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B9254A11-9A47-4707-ABBB-D6D0B91146A3"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E795058-8090-4C37-ABD1-78BFA2485939"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "downloadMessages(from:perRecord:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4E795058-8090-4C37-ABD1-78BFA2485939 - 1f700a7f0e626f1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Swift.Error&gt;, Swift.Never&gt;) -&gt; () in TSADMChat.CloudKitHelper.downloadMessages(from: Swift.Optional&lt;Foundation.Date&gt;, perRecord: (__C.CKRecordID, Swift.Result&lt;__C.CKRecord, Swift.Error&gt;) -&gt; ()) async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "4E795058-8090-4C37-ABD1-78BFA2485939 - 1f700a7f0e626f1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Swift.Error&gt;, Swift.Never&gt;) -&gt; () in TSADMChat.CloudKitHelper.downloadMessages(from: Swift.Optional&lt;Foundation.Date&gt;, perRecord: (__C.CKRecordID, Swift.Result&lt;__C.CKRecord, Swift.Error&gt;) -&gt; ()) async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "396">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E1902B8-9FE9-44B3-A652-FDC5A6F1A687"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "downloadMessages(from:perRecord:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3E1902B8-9FE9-44B3-A652-FDC5A6F1A687 - 1f700a7f0e626efa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Swift.Error&gt;, Swift.Never&gt;) -&gt; () in TSADMChat.CloudKitHelper.downloadMessages(from: Swift.Optional&lt;Foundation.Date&gt;, perRecord: (__C.CKRecordID, Swift.Result&lt;__C.CKRecord, Swift.Error&gt;) -&gt; ()) async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "608">
+               </Location>
+               <Location
+                  uuid = "3E1902B8-9FE9-44B3-A652-FDC5A6F1A687 - 1f700a7f0e626ed9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Swift.Error&gt;, Swift.Never&gt;) -&gt; () in TSADMChat.CloudKitHelper.downloadMessages(from: Swift.Optional&lt;Foundation.Date&gt;, perRecord: (__C.CKRecordID, Swift.Result&lt;__C.CKRecord, Swift.Error&gt;) -&gt; ()) async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "432">
+               </Location>
+               <Location
+                  uuid = "3E1902B8-9FE9-44B3-A652-FDC5A6F1A687 - 1f700a7f0e626ed9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Swift.Error&gt;, Swift.Never&gt;) -&gt; () in TSADMChat.CloudKitHelper.downloadMessages(from: Swift.Optional&lt;Foundation.Date&gt;, perRecord: (__C.CKRecordID, Swift.Result&lt;__C.CKRecord, Swift.Error&gt;) -&gt; ()) async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "548">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE588F01-22D5-4798-AC6C-857ECA65D972"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "CloudKitHelper"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "CE588F01-22D5-4798-AC6C-857ECA65D972 - 193613924bc7e6dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TSADMChat.CloudKitHelper.myUserRecordID() async throws -&gt; Swift.String"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "CE588F01-22D5-4798-AC6C-857ECA65D972 - e5eb87475864a7e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for TSADMChat.CloudKitHelper.myUserRecordID() async throws -&gt; Swift.String"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E5DC20D-E38E-4F39-A63A-3D7B17605FAF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "downloadMessages(from:perRecord:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D4767CC-D3F2-46EF-9EF8-A9F2B8008E0B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "completion(_:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "8D4767CC-D3F2-46EF-9EF8-A9F2B8008E0B - 86961bf5bc47527d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "completion(Swift.Result&lt;Swift.Optional&lt;__C.CKQueryCursor&gt;, Swift.Error&gt;) -&gt; ()"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "8D4767CC-D3F2-46EF-9EF8-A9F2B8008E0B - 86961bf5bc47527d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "completion(Swift.Result&lt;Swift.Optional&lt;__C.CKQueryCursor&gt;, Swift.Error&gt;) -&gt; ()"
+                  moduleName = "TSADMChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartomeumascastillo/Documents/TSADMChat/TSADMChat/CloudKitHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "288">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16A444E5-79AF-432D-8485-E4232531FB69"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "downloadMessages(from:perRecord:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1DDF2E4-939F-458D-A7B3-86F06A8402FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TSADMChat/CloudKitHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "downloadMessages(from:perRecord:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

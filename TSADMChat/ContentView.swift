@@ -8,6 +8,8 @@
 //
 
 import SwiftUI
+import CloudKit
+import UserNotifications
 
 struct ContentView: View {
     
@@ -15,12 +17,25 @@ struct ContentView: View {
     @State var messages: [String] = []
     @State var isActive = false
     @StateObject var loginManager = LoginManager()
+//    let persistenceController = PersistenceController.shared
+        let center = UNUserNotificationCenter.current()
+    
+    init() {
+           center.requestAuthorization(options: [.sound , .alert , .badge ], completionHandler: { (granted, error) in
+               if let error = error {
+                   // Handle the error here.
+               }
+               // Enable or disable features based on the authorization.
+           })
+       }
     
     var body: some View {
         ZStack {
             if self.isActive {
                 //ChatView()
                 if loginManager.isLoggedIn {
+                    let user = loginManager.getUser()
+                    
                     ChatView()
                 }
                 else {
@@ -39,32 +54,6 @@ struct ContentView: View {
             }
         }
     }
-}
-
-struct MessageBubble: View {
-    var message: String
-    var sender: String = "Juan Luis"
     
-    var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Text(sender)
-                    .font(.system(size: 12))
-                    .multilineTextAlignment(.leading)
-                Text(message)
-                    .font(.system(size: 16))
-                    .multilineTextAlignment(.leading)
-                    
-            }
-            .padding(10)
-            .background(Color.green)
-            .cornerRadius(20)
-            .foregroundStyle(.white)
-        }
-    }
 }
 
-#Preview {
-    ContentView()
-}

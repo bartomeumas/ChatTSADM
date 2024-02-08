@@ -9,21 +9,14 @@ import CloudKit
 
 class LoginManager : ObservableObject {
     @Published var isLoggedIn = false
+    @Published private var user: String = ""
     
-    func login(userName: String = "user200") {
-        let userRecord = CKRecord(recordType: "Users")
-        userRecord["name"] = userName as CKRecordValue
-
-        let database = CKContainer.default().publicCloudDatabase
-        
-        self.isLoggedIn = true
-        
-        database.save(userRecord) { (record, error) in
-            if let error = error {
-                print("Error saving record: \(error.localizedDescription)")
-            } else {
-                print("Record saved successfully")
-            }
-        }
+    func login(userName: String) async -> String {
+        isLoggedIn = true
+        return "barto"
+    }
+    
+    func getUser() -> String{
+        return user
     }
 }

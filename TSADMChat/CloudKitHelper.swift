@@ -15,7 +15,24 @@ struct CloudKitHelper {
     public func myUserRecordID() async throws -> String {
         let container = CKContainer.default()
         let record = try await container.userRecordID()
+        print(record.recordName)
         return record.recordName
+    }
+    
+    public func updateUser(newName: String) async throws -> Result<Void, Error> {
+        let recordID = try await myUserRecordID()
+        let container = CKContainer.default()
+        let db = container.publicCloudDatabase
+
+        do {
+            let record = try await db.record(for: CKRecord.ID(recordName: recordID))
+            print(record)
+            record["name"] = newName  // Assign the new name directly
+            try await db.save(record)
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
     }
     
     public func downloadMessages(from: Date?,
@@ -26,13 +43,13 @@ struct CloudKitHelper {
             let db = container.publicCloudDatabase
             let predicate: NSPredicate
             if let date = from {
-                predicate = NSPredicate(format: "createdTimestamp > %@", date as NSDate)
+                predicate = NSPredicate(format: "creationDate > %@", date as NSDate)
             } else {
                 predicate = NSPredicate(value: true)
             }
             
-            let query = CKQuery(recordType: "Messages", predicate: predicate)
-            query.sortDescriptors = [ NSSortDescriptor(key: "createdTimestamp", ascending: true)]
+            let query = CKQuery(recordType: "Message", predicate: predicate)
+            query.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: true)]
             
             func completion(_ operationResult: Result<CKQueryOperation.Cursor?, Error>) {
                 switch operationResult {
@@ -61,10 +78,10 @@ struct CloudKitHelper {
     }
     
     public func sendMessage(_ text: String) async throws {
-        let message = CKRecord(recordType: "Messages")
+        let message = CKRecord(recordType: "Message")
         message["text"] = text as NSString
         let db = CKContainer.default().publicCloudDatabase
-        try await db.save(message)	
+        try await db.save(message)
     }
     
     public func checkForSubscriptions() async throws -> CKSubscription? {
@@ -76,7 +93,7 @@ struct CloudKitHelper {
             let options:CKQuerySubscription.Options
             options = [.firesOnRecordCreation]
             let predicate = NSPredicate(value: true)
-            let subscription = CKQuerySubscription(recordType: "Messages",
+            let subscription = CKQuerySubscription(recordType: "Message",
                                                    predicate: predicate,
                                                    subscriptionID: CloudKitHelper.subscriptionID,
                                                    options: options)

@@ -33,7 +33,15 @@ struct LoginView: View {
                 Spacer()
                     .frame(height: 20)
                 Button {
-                    loginManager.login()
+                    Task {
+                        do {
+                             await loginManager.login(userName: username)
+                            try await CloudKitHelper().updateUser(newName: "BartomeuMas")
+                        } catch {
+                            // Handle any errors that may occur during insertion
+                            print("Failed to insert user: \(error)")
+                        }
+                    }
                 } label: {
                     HStack {
                         Text("Login")
