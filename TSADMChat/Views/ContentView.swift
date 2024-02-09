@@ -45,6 +45,13 @@ struct ContentView: View {
             }
         }
         .onAppear {
+            Task {
+                let userName = loginManager.getUser()
+                
+                if (userName.isEmpty == false) {
+                    await loginManager.login(userName: userName)
+                }
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                             withAnimation {
                                 self.isActive = true
@@ -52,6 +59,4 @@ struct ContentView: View {
             }
         }
     }
-    
 }
-

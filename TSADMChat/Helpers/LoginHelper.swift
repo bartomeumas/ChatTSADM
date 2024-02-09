@@ -10,12 +10,11 @@ import PhotosUI
 
 class LoginManager : ObservableObject {
     @Published var isLoggedIn = false
-    @Published private var user: String = ""
     @State private var selectedImage: UIImage?
 
-    func login(userName: String, imageAsset: CKAsset) async {
+    func login(userName: String) async {
         do {
-                try await CloudKitHelper().updateUser(newName: userName, imageAsset: imageAsset)
+            try await CloudKitHelper().updateUser(newName: userName, thumbnail: nil)
                 UserDefaults.standard.set(userName, forKey: "username")
             isLoggedIn = true
         }
@@ -24,7 +23,9 @@ class LoginManager : ObservableObject {
         }
     }
     
-    func getUser() -> String{
+    public func getUser() -> String {
+        let user: String = UserDefaults.standard.string(forKey: "username") ?? ""
+
         return user
     }
 }

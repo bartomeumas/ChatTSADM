@@ -19,11 +19,7 @@ struct CloudKitHelper {
         return record.recordName
     }
     
-    public func saveImage() {
-        
-    }
-    
-    public func updateUser(newName: String, imageAsset: CKAsset) async throws -> Result<Void, Error> {
+    public func updateUser(newName: String?, thumbnail: CKAsset?) async throws -> Result<Void, Error> {
         let recordID = try await myUserRecordID()
         let container = CKContainer.default()
         let db = container.publicCloudDatabase
@@ -31,8 +27,14 @@ struct CloudKitHelper {
         do {
             let record = try await db.record(for: CKRecord.ID(recordName: recordID))
             
-            record["name"] = newName
-            record["thumbnail"] = imageAsset
+            if (newName != nil) {
+                record["name"] = newName
+            }
+            if (thumbnail != nil) {
+                print("thumbnail")
+                record["thumbnail"] = thumbnail
+            }
+            print(thumbnail)
             
             try await db.save(record)
             return .success(())
