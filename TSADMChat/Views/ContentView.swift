@@ -23,6 +23,7 @@ struct ContentView: View {
     init() {
            center.requestAuthorization(options: [.sound , .alert , .badge ], completionHandler: { (granted, error) in
                if let error = error {
+                   print(error)
                    // Handle the error here.
                }
                // Enable or disable features based on the authorization.
@@ -32,10 +33,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if self.isActive {
-                //ChatView()
                 if loginManager.isLoggedIn {
-                    let user = loginManager.getUser()
-                    
                     ChatView()
                 }
                 else {

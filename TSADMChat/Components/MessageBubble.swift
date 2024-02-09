@@ -23,7 +23,6 @@ struct MessageBubble: View {
                     Text(message)
                         .font(.system(size: 16))
                         .multilineTextAlignment(.leading)
-                    
                 }
                 .padding(10)
                 .background(Color.green)

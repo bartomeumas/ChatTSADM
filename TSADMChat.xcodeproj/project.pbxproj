@@ -18,10 +18,10 @@
 		223798CE2B2620DE00183831 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798CD2B2620DE00183831 /* SplashView.swift */; };
 		223798D02B26248500183831 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798CF2B26248500183831 /* ChatView.swift */; };
 		223798D22B2624F900183831 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798D12B2624F900183831 /* LoginView.swift */; };
-		223798D92B262F4F00183831 /* ProfileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798D82B262F4F00183831 /* ProfileIconView.swift */; };
-		223798DB2B262F9A00183831 /* SUImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798DA2B262F9A00183831 /* SUImagePickerView.swift */; };
-		223798DD2B2A28B300183831 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798DC2B2A28B300183831 /* LoginManager.swift */; };
+		223798DD2B2A28B300183831 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798DC2B2A28B300183831 /* LoginHelper.swift */; };
 		22865C342B6D9A3100BC3308 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22865C332B6D9A3100BC3308 /* MessageBubble.swift */; };
+		22865C412B75809400BC3308 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22865C402B75809300BC3308 /* ProfileImage.swift */; };
+		22865C442B7580EE00BC3308 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22865C432B7580EE00BC3308 /* ImageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +58,10 @@
 		223798CD2B2620DE00183831 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		223798CF2B26248500183831 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		223798D12B2624F900183831 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		223798D82B262F4F00183831 /* ProfileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIconView.swift; sourceTree = "<group>"; };
-		223798DA2B262F9A00183831 /* SUImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUImagePickerView.swift; sourceTree = "<group>"; };
-		223798DC2B2A28B300183831 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		223798DC2B2A28B300183831 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		22865C332B6D9A3100BC3308 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		22865C402B75809300BC3308 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		22865C432B7580EE00BC3308 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,20 +112,15 @@
 		02F95A452B0B4FAC00F4D5C0 /* TSADMChat */ = {
 			isa = PBXGroup;
 			children = (
-				02F95A462B0B4FAC00F4D5C0 /* TSADMChatApp.swift */,
-				02F95A482B0B4FAC00F4D5C0 /* ContentView.swift */,
-				223798CD2B2620DE00183831 /* SplashView.swift */,
-				023FB64D2B0E9B4100FA2FAE /* CloudKitHelper.swift */,
-				223798CF2B26248500183831 /* ChatView.swift */,
-				223798D12B2624F900183831 /* LoginView.swift */,
+				22865C452B7581C900BC3308 /* Helpers */,
+				22865C422B7580D300BC3308 /* Models */,
+				22865C3F2B75806D00BC3308 /* Components */,
+				22865C3E2B755F1D00BC3308 /* Views */,
 				02F95A4C2B0B4FAD00F4D5C0 /* Assets.xcassets */,
+				02F95A462B0B4FAC00F4D5C0 /* TSADMChatApp.swift */,
 				02F95A512B0B4FAD00F4D5C0 /* TSADMChat.entitlements */,
 				02F95A522B0B4FAD00F4D5C0 /* Info.plist */,
 				02F95A4E2B0B4FAD00F4D5C0 /* Preview Content */,
-				223798D82B262F4F00183831 /* ProfileIconView.swift */,
-				223798DA2B262F9A00183831 /* SUImagePickerView.swift */,
-				223798DC2B2A28B300183831 /* LoginManager.swift */,
-				22865C332B6D9A3100BC3308 /* MessageBubble.swift */,
 			);
 			path = TSADMChat;
 			sourceTree = "<group>";
@@ -153,6 +148,43 @@
 				02F95A672B0B4FAD00F4D5C0 /* TSADMChatUITestsLaunchTests.swift */,
 			);
 			path = TSADMChatUITests;
+			sourceTree = "<group>";
+		};
+		22865C3E2B755F1D00BC3308 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				223798CD2B2620DE00183831 /* SplashView.swift */,
+				223798D12B2624F900183831 /* LoginView.swift */,
+				02F95A482B0B4FAC00F4D5C0 /* ContentView.swift */,
+				223798CF2B26248500183831 /* ChatView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22865C3F2B75806D00BC3308 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				22865C332B6D9A3100BC3308 /* MessageBubble.swift */,
+				22865C402B75809300BC3308 /* ProfileImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		22865C422B7580D300BC3308 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22865C432B7580EE00BC3308 /* ImageModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22865C452B7581C900BC3308 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				023FB64D2B0E9B4100FA2FAE /* CloudKitHelper.swift */,
+				223798DC2B2A28B300183831 /* LoginHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,12 +320,12 @@
 				223798D22B2624F900183831 /* LoginView.swift in Sources */,
 				02F95A492B0B4FAC00F4D5C0 /* ContentView.swift in Sources */,
 				223798CE2B2620DE00183831 /* SplashView.swift in Sources */,
+				22865C442B7580EE00BC3308 /* ImageModel.swift in Sources */,
 				223798D02B26248500183831 /* ChatView.swift in Sources */,
-				223798D92B262F4F00183831 /* ProfileIconView.swift in Sources */,
-				223798DD2B2A28B300183831 /* LoginManager.swift in Sources */,
+				223798DD2B2A28B300183831 /* LoginHelper.swift in Sources */,
 				02F95A472B0B4FAC00F4D5C0 /* TSADMChatApp.swift in Sources */,
 				22865C342B6D9A3100BC3308 /* MessageBubble.swift in Sources */,
-				223798DB2B262F9A00183831 /* SUImagePickerView.swift in Sources */,
+				22865C412B75809400BC3308 /* ProfileImage.swift in Sources */,
 				023FB64E2B0E9B4100FA2FAE /* CloudKitHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

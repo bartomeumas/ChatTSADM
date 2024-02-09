@@ -9,18 +9,16 @@ import SwiftUI
 import CloudKit
 
 struct LoginView: View {
-    @State var username: String = ""
-    @State private var image: Image? = Image("user")
-    @State private var shouldPresentImagePicker = false
-    @State private var shouldPresentActionScheet = false
-    @State private var shouldPresentCamera = false
+    @State var username: String = UserDefaults.standard.string(forKey: "username") ?? ""
     @ObservedObject var loginManager : LoginManager
+    @StateObject var viewModel = ImageModel()
 
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
-                ProfileIconView()
+                // Camera button should go here
+                EditableCircularProfileImage(viewModel: viewModel)
                 Spacer()
                     .frame(height: 20)
                 TextField("Username", text: $username)
@@ -34,13 +32,25 @@ struct LoginView: View {
                     .frame(height: 20)
                 Button {
                     Task {
-                        do {
-                             await loginManager.login(userName: username)
-                            try await CloudKitHelper().updateUser(newName: "BartomeuMas")
-                        } catch {
-                            // Handle any errors that may occur during insertion
-                            print("Failed to insert user: \(error)")
+                        switch viewModel.imageState {
+                        case .success(let image):
+                            try? image.write(to: URL(fileURLWithPath: "/tmp/profile_image.jpg"))
+
+                               let imageAsset = CKAsset(fileURL: URL(fileURLWithPath: "/tmp/profile_image.jpg"))
+
+                                await loginManager.login(userName: username, imageAsset: imageAsset)
+                        case .loading:
+//                            ProgressView()
+                            print("")
+                        case .empty:
+//                            Image(systemName: "person.fill")
+//                                .font(.system(size: 40))
+//                                .foregroundColor(.white)
+                            print("")
+                        case .failure:
+                           print("")
                         }
+                        
                     }
                 } label: {
                     HStack {
