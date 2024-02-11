@@ -9,28 +9,19 @@ import Foundation
 import SwiftUI
 
 struct BottomChatBar : View {
-    @Binding var message: String
-    @State var messages: [String] = []
+    @State var message: String = ""
+    @ObservedObject var messagesService: MessagesService
     
     var body: some View {
         HStack {
                             TextField("Send a message", text: $message)
                                 .textFieldStyle(.roundedBorder)
                             Button {
-                                guard message.count > 0 else {
-                                              return
-                                            }
-                                             
-                                            Task {
-                                                do {
-                                                  try await CloudKitHelper().sendMessage(message)
-                                                    messages.append(message)
-                                                  message = ""
-                                                } catch {
-                                                  // Handle the error
-                                                  print("Error sending message: \(error)")
-                                                }
-                                              }
+                                guard message.count > 0 else { return }
+                                Task {
+                                    await messagesService.sendMessage(message)
+                                    message = ""
+                                }
                             } label: {
                                 Image(systemName: "paperplane")
                                     .resizable()

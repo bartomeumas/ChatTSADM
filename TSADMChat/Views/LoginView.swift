@@ -9,7 +9,7 @@ import SwiftUI
 import CloudKit
 
 struct LoginView: View {
-    @ObservedObject var loginManager : LoginManager
+    @ObservedObject var loginService : LoginService
     @State var username: String = UserDefaults.standard.string(forKey: "username") ?? ""
 
     var body: some View {
@@ -27,7 +27,7 @@ struct LoginView: View {
                 Button {
                     Task {
                         print("login")
-                        await loginManager.login(userName: username)
+                        await loginService.login(userName: username)
                     }
                 } label: {
                     HStack {

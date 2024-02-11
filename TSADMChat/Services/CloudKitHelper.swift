@@ -31,10 +31,8 @@ struct CloudKitHelper {
                 record["name"] = newName
             }
             if (thumbnail != nil) {
-                print("thumbnail")
                 record["thumbnail"] = thumbnail
             }
-            print(thumbnail)
             
             try await db.save(record)
             return .success(())
@@ -56,7 +54,7 @@ struct CloudKitHelper {
                 predicate = NSPredicate(value: true)
             }
             
-            let query = CKQuery(recordType: "Message", predicate: predicate)
+            let query = CKQuery(recordType: "Messages", predicate: predicate)
             query.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: true)]
             
             func completion(_ operationResult: Result<CKQueryOperation.Cursor?, Error>) {
@@ -86,33 +84,54 @@ struct CloudKitHelper {
     }
     
     public func sendMessage(_ text: String) async throws {
-        let message = CKRecord(recordType: "Message")
+        let message = CKRecord(recordType: "Messages")
         message["text"] = text as NSString
         let db = CKContainer.default().publicCloudDatabase
         try await db.save(message)
     }
     
-    public func checkForSubscriptions() async throws -> CKSubscription? {
-        let db = CKContainer.default().publicCloudDatabase
-        let subscriptions = try await db.allSubscriptions()
-        if !subscriptions.contains(where: { subscription in
-            subscription.subscriptionID == CloudKitHelper.subscriptionID
-        }) {
-            let options:CKQuerySubscription.Options
-            options = [.firesOnRecordCreation]
-            let predicate = NSPredicate(value: true)
-            let subscription = CKQuerySubscription(recordType: "Message",
-                                                   predicate: predicate,
-                                                   subscriptionID: CloudKitHelper.subscriptionID,
-                                                   options: options)
-            let info = CKSubscription.NotificationInfo()
-            info.soundName = "chan.aiff"
-            info.alertBody = "New message"
-            
-            subscription.notificationInfo = info
-            
-            return try await db.save(subscription)
+    public func subscribeToNotifications() {
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: "Messages", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
+        let notification = CKSubscription.NotificationInfo()
+        
+        notification.title = "New message"
+        notification.alertBody = "Open chat"
+        notification.soundName = "default"
+        
+        subscription.notificationInfo = notification
+        
+        CKContainer.default().publicCloudDatabase.save(subscription) { returnedSubscription, returnedError in
+            if let error = returnedError {
+                print(error)
+            }
+            else {
+                print("Subscribed")
+            }
         }
-        return nil
     }
+//    
+//    public func checkForSubscriptions() async throws -> CKSubscription? {
+//        let db = CKContainer.default().publicCloudDatabase
+//        let subscriptions = try await db.allSubscriptions()
+//        if !subscriptions.contains(where: { subscription in
+//            subscription.subscriptionID == CloudKitHelper.subscriptionID
+//        }) {
+//            let options:CKQuerySubscription.Options
+//            options = [.firesOnRecordCreation]
+//            let predicate = NSPredicate(value: true)
+//            let subscription = CKQuerySubscription(recordType: "Messages",
+//                                                   predicate: predicate,
+//                                                   subscriptionID: CloudKitHelper.subscriptionID,
+//                                                   options: options)
+//            let info = CKSubscription.NotificationInfo()
+//            info.soundName = "chan.aiff"
+//            info.alertBody = "New message"
+//            
+//            subscription.notificationInfo = info
+//            
+//            return try await db.save(subscription)
+//        }
+//        return nil
+//    }
 }

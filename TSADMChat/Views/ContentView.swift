@@ -13,31 +13,30 @@ import UserNotifications
 
 struct ContentView: View {
     
-    @State private var message: String = ""
-    @State var messages: [String] = []
     @State var isActive = false
-    @StateObject var loginManager = LoginManager()
-//    let persistenceController = PersistenceController.shared
-        let center = UNUserNotificationCenter.current()
+    @StateObject var loginService = LoginService()
+    @ObservedObject var messagesService = MessagesService()
+    let center = UNUserNotificationCenter.current()
     
     init() {
            center.requestAuthorization(options: [.sound , .alert , .badge ], completionHandler: { (granted, error) in
                if let error = error {
                    print(error)
                    // Handle the error here.
+               } else {
+                   CloudKitHelper().subscribeToNotifications()
                }
-               // Enable or disable features based on the authorization.
            })
        }
     
     var body: some View {
         ZStack {
             if self.isActive {
-                if loginManager.isLoggedIn {
-                    ChatView()
+                if loginService.isLoggedIn {
+                    ChatView(messagesService: messagesService)
                 }
                 else {
-                    LoginView(loginManager: loginManager)
+                    LoginView(loginService: loginService)
                 }
             }
             else {
@@ -46,11 +45,12 @@ struct ContentView: View {
         }
         .onAppear {
             Task {
-                let userName = loginManager.getUser()
+                let userName = loginService.getUser()
                 
                 if (userName.isEmpty == false) {
-                    await loginManager.login(userName: userName)
+                    await loginService.login(userName: userName)
                 }
+                messagesService.prepareMessages()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                             withAnimation {

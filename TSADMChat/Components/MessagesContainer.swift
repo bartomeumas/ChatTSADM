@@ -11,59 +11,41 @@ import Combine
 import CloudKit
 
 struct MessagesContainer : View {
-    @State var messages: [String]
+    @ObservedObject var messagesService: MessagesService
     @State var username: String = ""
-    
+    @Namespace var bottomID
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack {
-                    if messages.isEmpty {
+                    if messagesService.messages.isEmpty {
                         Text("Cargando mensajes...")
                     } else {
-                        ForEach(messages, id: \.self) { message in
+                        ForEach(messagesService.messages, id: \.self) { message in
                             MessageBubble(message: message, sender: username)
                         }
                         .frame(maxWidth: .infinity)
                         .background(Color.white)
                         .padding([.leading, .trailing], 20)
                     }
+                    Spacer()
+                        .frame(height: 1)
+                        .id(bottomID)
                 }
                 .frame(maxWidth: .infinity)
-                .onAppear {
-                    prepareMessages()
-                }
-                .onReceive(Just(messages)) { _ in
+                .onChange(of: messagesService.messages) { _ in
                     withAnimation {
-                        proxy.scrollTo(messages.last, anchor: .bottom)
+                        proxy.scrollTo(bottomID)
+                    }
+                }
+                .onAppear {
+                    withAnimation {
+                        proxy.scrollTo(bottomID)
                     }
                 }
             }
         }
         }
-    
-    func prepareMessages() -> Void {
-        Task {
-            do {
-                _ = try await CloudKitHelper().myUserRecordID()
-//                CloudKitHelper().requestNotificationPermissions()
-//                try await CloudKitHelper().checkForSubscriptions()
-                await CloudKitHelper().downloadMessages(from: nil, perRecord: convertMessages)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func convertMessages(recordID: CKRecord.ID, recordRes: Result<CKRecord, Error>) {
-        switch (recordRes) {
-        case .success(let record):
-            if let message = record["text"] as? String {
-                messages.append(message)
-            }
-        case .failure:
-            print("Failed to extract message from record.")
-        }
-    }
     }
 
