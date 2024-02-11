@@ -41,22 +41,22 @@ struct ProfileView: View {
     }
 }
 
-extension UIImage {
-    func toCKAsset(name: String? = nil) -> CKAsset? {
-        guard let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
-            return nil
-        }
-        guard let imageFilePath = NSURL(fileURLWithPath: documentDirectory)
-                .appendingPathComponent(name ?? "asset#\(UUID.init().uuidString)")
-        else {
-            return nil
-        }
-        do {
-            try self.pngData()?.write(to: imageFilePath)
-            return CKAsset(fileURL: imageFilePath)
-        } catch {
-            print("Error converting UIImage to CKAsset!")
-        }
-        return nil
-    }
-}
+//extension UIImage {
+//    func toCKAsset(name: String? = nil) -> CKAsset? {
+//        guard let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+//            return nil
+//        }
+//        guard let imageFilePath = NSURL(fileURLWithPath: documentDirectory)
+//                .appendingPathComponent(name ?? "asset#\(UUID.init().uuidString)")
+//        else {
+//            return nil
+//        }
+//        do {
+//            try self.pngData()?.write(to: imageFilePath)
+//            return CKAsset(fileURL: imageFilePath)
+//        } catch {
+//            print("Error converting UIImage to CKAsset!")
+//        }
+//        return nil
+//    }
+//}

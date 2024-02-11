@@ -14,8 +14,8 @@ import UserNotifications
 struct ContentView: View {
     
     @State var isActive = false
-    @StateObject var loginService = LoginService()
-    @ObservedObject var messagesService = MessagesService()
+    @StateObject var loginModel = LoginModel()
+    @ObservedObject var messagesModel = MessagesModel()
     let center = UNUserNotificationCenter.current()
     
     init() {
@@ -32,11 +32,11 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if self.isActive {
-                if loginService.isLoggedIn {
-                    ChatView(messagesService: messagesService)
+                if loginModel.isLoggedIn {
+                    ChatView(messagesModel: messagesModel)
                 }
                 else {
-                    LoginView(loginService: loginService)
+                    LoginView(loginModel: loginModel)
                 }
             }
             else {
@@ -45,12 +45,12 @@ struct ContentView: View {
         }
         .onAppear {
             Task {
-                let userName = loginService.getUser()
+                let userName = loginModel.getUser()
                 
                 if (userName.isEmpty == false) {
-                    await loginService.login(userName: userName)
+                    await loginModel.login(userName: userName)
                 }
-                messagesService.prepareMessages()
+                messagesModel.prepareMessages()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                             withAnimation {

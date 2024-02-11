@@ -11,7 +11,7 @@ import Combine
 import CloudKit
 
 struct MessagesContainer : View {
-    @ObservedObject var messagesService: MessagesService
+    @ObservedObject var messagesModel: MessagesModel
     @State var username: String = ""
     @Namespace var bottomID
 
@@ -19,10 +19,10 @@ struct MessagesContainer : View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack {
-                    if messagesService.messages.isEmpty {
+                    if messagesModel.messages.isEmpty {
                         Text("Cargando mensajes...")
                     } else {
-                        ForEach(messagesService.messages, id: \.self) { message in
+                        ForEach(messagesModel.messages, id: \.self) { message in
                             MessageBubble(message: message, sender: username)
                         }
                         .frame(maxWidth: .infinity)
@@ -34,7 +34,7 @@ struct MessagesContainer : View {
                         .id(bottomID)
                 }
                 .frame(maxWidth: .infinity)
-                .onChange(of: messagesService.messages) { _ in
+                .onChange(of: messagesModel.messages) { _ in
                     withAnimation {
                         proxy.scrollTo(bottomID)
                     }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct BottomChatBar : View {
     @State var message: String = ""
-    @ObservedObject var messagesService: MessagesService
+    @ObservedObject var messagesModel: MessagesModel
     
     var body: some View {
         HStack {
@@ -19,7 +19,7 @@ struct BottomChatBar : View {
                             Button {
                                 guard message.count > 0 else { return }
                                 Task {
-                                    await messagesService.sendMessage(message)
+                                    await messagesModel.sendMessage(message)
                                     message = ""
                                 }
                             } label: {

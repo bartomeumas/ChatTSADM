@@ -8,7 +8,7 @@
 import Foundation
 import CloudKit
 
-class MessagesService: ObservableObject {
+class MessagesModel: ObservableObject {
     @Published var messages: [String] = []
 
     func sendMessage(_ message: String) async {

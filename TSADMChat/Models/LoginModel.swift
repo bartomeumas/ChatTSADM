@@ -1,5 +1,5 @@
 //
-//  LoginService.swift
+//  LoginModel.swift
 //  TSADMChat
 //
 //  Created by Bartomeu Mas Castillo on 13/12/23.
@@ -8,7 +8,7 @@ import SwiftUI
 import CloudKit
 import PhotosUI
 
-class LoginService : ObservableObject {
+class LoginModel : ObservableObject {
     @Published var isLoggedIn = false
     @State private var selectedImage: UIImage?
 

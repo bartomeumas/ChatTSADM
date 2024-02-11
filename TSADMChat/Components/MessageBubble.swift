@@ -23,7 +23,7 @@ struct MessageBubble: View {
                         .multilineTextAlignment(.leading)
                 }
                 .padding(10)
-                .background(sender == LoginService().getUser() ? Color.green : Color.blue)
+                .background(sender == LoginModel().getUser() ? Color.green : Color.blue)
                 .cornerRadius(20)
                 .foregroundStyle(.white)
             }

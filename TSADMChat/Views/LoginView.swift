@@ -9,12 +9,16 @@ import SwiftUI
 import CloudKit
 
 struct LoginView: View {
-    @ObservedObject var loginService : LoginService
+    @ObservedObject var loginModel : LoginModel
     @State var username: String = UserDefaults.standard.string(forKey: "username") ?? ""
 
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
+                ProfilePic()
+                Spacer()
+                    .frame(height: 20)
                 TextField("Username", text: $username)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 300)
@@ -27,7 +31,7 @@ struct LoginView: View {
                 Button {
                     Task {
                         print("login")
-                        await loginService.login(userName: username)
+                        await loginModel.login(userName: username)
                     }
                 } label: {
                     HStack {
@@ -47,10 +51,6 @@ struct LoginView: View {
                     )
                     .disabled(username.isEmpty)
                 }
-                Spacer()
-                ProfileView()
-                Spacer()
-                    .frame(height: 20)
                 Spacer()
             }
         }
