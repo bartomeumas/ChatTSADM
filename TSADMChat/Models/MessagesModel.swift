@@ -15,7 +15,7 @@ class MessagesModel: ObservableObject {
         do {
           try await CloudKitHelper().sendMessage(message)
             
-            let newMessage = try await Message(id: UUID().uuidString, senderId: CloudKitHelper().myUserRecordID(), text: message)
+            let newMessage = Message(id: UUID().uuidString, sender: UsersModel().users[0].name, text: message)
             messages.append(newMessage)
         } catch {
           // Handle the error
@@ -42,7 +42,7 @@ class MessagesModel: ObservableObject {
                 let senderId = record.creatorUserRecordID!.recordName
                 let messageId = record.recordID.recordName
                 
-                let message = Message(id: messageId, senderId: senderId, text: messageText)
+                let message = Message(id: messageId, sender: "", text: messageText)
                 
                 messages.append(message)
             }

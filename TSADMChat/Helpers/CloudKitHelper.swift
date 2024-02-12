@@ -12,6 +12,11 @@ struct CloudKitHelper {
     
     static let subscriptionID = "NEW_MESSAGE"
     
+    enum FetchError: Error {
+            case recordNotFound
+            case cloudKitError(Error)
+        }
+    
     public func myUserRecordID() async throws -> String {
         let container = CKContainer.default()
         let record = try await container.userRecordID()
@@ -19,6 +24,27 @@ struct CloudKitHelper {
         return record.recordName
     }
     
+    func fetchUserInfo(userId: String, completion: @escaping (Result<String, FetchError>) -> Void) {
+        let recordID = CKRecord.ID(recordName: userId)
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            if let error = error {
+                completion(.failure(.cloudKitError(error)))
+                return
+            }
+
+            guard let record = record else {
+                completion(.failure(.recordNotFound))
+                return
+            }
+
+            if let name = record["name"] as? String {
+                completion(.success(name))
+            } else {
+                completion(.failure(.recordNotFound))
+            }
+        }
+    }
+ 
     public func updateUser(newName: String?, thumbnail: CKAsset?) async throws -> Result<Void, Error> {
         let recordID = try await myUserRecordID()
         let container = CKContainer.default()

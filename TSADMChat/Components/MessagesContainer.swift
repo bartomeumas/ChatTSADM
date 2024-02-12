@@ -12,6 +12,7 @@ import CloudKit
 
 struct MessagesContainer : View {
     @ObservedObject var messagesModel: MessagesModel
+    @ObservedObject var usersModel: UsersModel
     @State var username: String = ""
     @Namespace var bottomID
 
@@ -23,7 +24,7 @@ struct MessagesContainer : View {
                         Text("Cargando mensajes...")
                     } else {
                         ForEach(messagesModel.messages, id: \.self) { message in
-                            MessageBubble(message: message.text, sender: message.senderId)
+                            MessageBubble(message: message.text, sender: message.sender)
                         }
                         .frame(maxWidth: .infinity)
                         .background(Color.white)
@@ -38,6 +39,9 @@ struct MessagesContainer : View {
                     withAnimation {
                         proxy.scrollTo(bottomID)
                     }
+                }
+                .onChange(of: usersModel.users) { _ in
+                    print(usersModel.users)
                 }
                 .onAppear {
                     withAnimation {

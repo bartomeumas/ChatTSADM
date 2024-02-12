@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var isActive = false
     @StateObject var loginModel = LoginModel()
     @ObservedObject var messagesModel = MessagesModel()
+    @ObservedObject var usersModel = UsersModel()
     let center = UNUserNotificationCenter.current()
     
     init() {
@@ -31,7 +32,7 @@ struct ContentView: View {
         ZStack {
             if self.isActive {
                 if loginModel.isLoggedIn {
-                    ChatView(messagesModel: messagesModel)
+                    ChatView(messagesModel: messagesModel, usersModel: usersModel)
                 }
                 else {
                     LoginView(loginModel: loginModel)
@@ -44,13 +45,15 @@ struct ContentView: View {
         .onAppear {
             Task {
                 try await CloudKitHelper().checkForSubscriptions()
+                                
+                usersModel.prepareUsers()
+                messagesModel.prepareMessages()
                 
                 let userName = loginModel.getUser()
                 
                 if (userName.isEmpty == false) {
                     await loginModel.login(userName: userName)
                 }
-                messagesModel.prepareMessages()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                             withAnimation {

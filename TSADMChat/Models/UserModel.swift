@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Message: Identifiable, Hashable {
+struct UserModel: Identifiable, Hashable {
     let id: String // Unique identifier for the message
-    let sender: String
-    let text: String
+    let name: String
+    let thumbnail: Image?
 
-    init(id: String, sender: String, text: String) {
+    init(id: String, name: String, thumbnail: Image?) {
         self.id = id
-        self.sender = sender
-        self.text = text
+        self.name = name
+        self.thumbnail = thumbnail
     }
 
     // Implement the hashValue property:
@@ -24,7 +25,9 @@ struct Message: Identifiable, Hashable {
     }
 
     // Also implement the == operator for comparison:
-    static func ==(lhs: Message, rhs: Message) -> Bool {
+    static func ==(lhs: UserModel, rhs: UserModel) -> Bool {
         return lhs.id == rhs.id // Compare based on the unique identifier
     }
+    
+    
 }
