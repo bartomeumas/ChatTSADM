@@ -9,12 +9,14 @@ import Foundation
 import CloudKit
 
 class MessagesModel: ObservableObject {
-    @Published var messages: [String] = []
+    @Published var messages: [Message] = []
 
     func sendMessage(_ message: String) async {
         do {
           try await CloudKitHelper().sendMessage(message)
-            messages.append(message)
+            
+            let newMessage = try await Message(id: UUID().uuidString, senderId: CloudKitHelper().myUserRecordID(), text: message)
+            messages.append(newMessage)
         } catch {
           // Handle the error
           print("Error sending message: \(error)")
@@ -25,7 +27,7 @@ class MessagesModel: ObservableObject {
         Task {
             do {
                 _ = try await CloudKitHelper().myUserRecordID()
-//                try await CloudKitHelper().checkForSubscriptions()
+                try await CloudKitHelper().checkForSubscriptions()
                 await CloudKitHelper().downloadMessages(from: nil, perRecord: convertMessages)
             } catch {
                 print(error.localizedDescription)
@@ -36,7 +38,12 @@ class MessagesModel: ObservableObject {
     func convertMessages(recordID: CKRecord.ID, recordRes: Result<CKRecord, Error>) {
         switch (recordRes) {
         case .success(let record):
-            if let message = record["text"] as? String {
+            if let messageText = record["text"] as? String {
+                let senderId = record.creatorUserRecordID!.recordName
+                let messageId = record.recordID.recordName
+                
+                let message = Message(id: messageId, senderId: senderId, text: messageText)
+                
                 messages.append(message)
             }
         case .failure:

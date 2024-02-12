@@ -119,7 +119,7 @@ struct CloudKitHelper {
             let options:CKQuerySubscription.Options
             options = [.firesOnRecordCreation]
             let predicate = NSPredicate(value: true)
-            let subscription = CKQuerySubscription(recordType: "Messages",
+            let subscription = CKQuerySubscription(recordType: "Message",
                                                    predicate: predicate,
                                                    subscriptionID: CloudKitHelper.subscriptionID,
                                                    options: options)

@@ -23,7 +23,7 @@ struct MessagesContainer : View {
                         Text("Cargando mensajes...")
                     } else {
                         ForEach(messagesModel.messages, id: \.self) { message in
-                            MessageBubble(message: message, sender: username)
+                            MessageBubble(message: message.text, sender: message.senderId)
                         }
                         .frame(maxWidth: .infinity)
                         .background(Color.white)
@@ -48,4 +48,3 @@ struct MessagesContainer : View {
         }
         }
     }
-
