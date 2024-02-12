@@ -54,7 +54,7 @@ struct CloudKitHelper {
                 predicate = NSPredicate(value: true)
             }
             
-            let query = CKQuery(recordType: "Messages", predicate: predicate)
+            let query = CKQuery(recordType: "Message", predicate: predicate)
             query.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: true)]
             
             func completion(_ operationResult: Result<CKQueryOperation.Cursor?, Error>) {
@@ -84,7 +84,7 @@ struct CloudKitHelper {
     }
     
     public func sendMessage(_ text: String) async throws {
-        let message = CKRecord(recordType: "Messages")
+        let message = CKRecord(recordType: "Message")
         message["text"] = text as NSString
         let db = CKContainer.default().publicCloudDatabase
         try await db.save(message)
@@ -92,7 +92,7 @@ struct CloudKitHelper {
     
     public func subscribeToNotifications() {
       let predicate = NSPredicate(value: true)
-      let subscription = CKQuerySubscription(recordType: "Messages", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
+      let subscription = CKQuerySubscription(recordType: "Message", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
       let notification = CKSubscription.NotificationInfo()
 
       notification.title = "New message"
@@ -109,28 +109,28 @@ struct CloudKitHelper {
       }
     }
 
-//    
-//    public func checkForSubscriptions() async throws -> CKSubscription? {
-//        let db = CKContainer.default().publicCloudDatabase
-//        let subscriptions = try await db.allSubscriptions()
-//        if !subscriptions.contains(where: { subscription in
-//            subscription.subscriptionID == CloudKitHelper.subscriptionID
-//        }) {
-//            let options:CKQuerySubscription.Options
-//            options = [.firesOnRecordCreation]
-//            let predicate = NSPredicate(value: true)
-//            let subscription = CKQuerySubscription(recordType: "Messages",
-//                                                   predicate: predicate,
-//                                                   subscriptionID: CloudKitHelper.subscriptionID,
-//                                                   options: options)
-//            let info = CKSubscription.NotificationInfo()
-//            info.soundName = "chan.aiff"
-//            info.alertBody = "New message"
-//            
-//            subscription.notificationInfo = info
-//            
-//            return try await db.save(subscription)
-//        }
-//        return nil
-//    }
+    
+    public func checkForSubscriptions() async throws -> CKSubscription? {
+        let db = CKContainer.default().publicCloudDatabase
+        let subscriptions = try await db.allSubscriptions()
+        if !subscriptions.contains(where: { subscription in
+            subscription.subscriptionID == CloudKitHelper.subscriptionID
+        }) {
+            let options:CKQuerySubscription.Options
+            options = [.firesOnRecordCreation]
+            let predicate = NSPredicate(value: true)
+            let subscription = CKQuerySubscription(recordType: "Messages",
+                                                   predicate: predicate,
+                                                   subscriptionID: CloudKitHelper.subscriptionID,
+                                                   options: options)
+            let info = CKSubscription.NotificationInfo()
+            info.soundName = "chan.aiff"
+            info.alertBody = "New message"
+            
+            subscription.notificationInfo = info
+            
+            return try await db.save(subscription)
+        }
+        return nil
+    }
 }

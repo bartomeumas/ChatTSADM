@@ -23,8 +23,6 @@ struct ContentView: View {
                if let error = error {
                    print(error)
                    // Handle the error here.
-               } else {
-                   CloudKitHelper().subscribeToNotifications()
                }
            })
        }
@@ -45,6 +43,8 @@ struct ContentView: View {
         }
         .onAppear {
             Task {
+                try await CloudKitHelper().checkForSubscriptions()
+                
                 let userName = loginModel.getUser()
                 
                 if (userName.isEmpty == false) {
