@@ -9,15 +9,14 @@ import SwiftUI
 import CloudKit
 
 struct ChatView: View {
-    @ObservedObject var messagesModel: MessagesModel
-    @ObservedObject var usersModel: UsersModel
+    @ObservedObject var chatModel: ChatModel
     @State var username: String = LoginModel().getUser()
     
     var body: some View {
         VStack {
             TopChatBar(username: username)
-            MessagesContainer(messagesModel: messagesModel, usersModel: usersModel, username: username)
-            BottomChatBar(messagesModel: messagesModel)
+            MessagesContainer(chatModel: chatModel, username: username)
+            BottomChatBar(chatModel: chatModel)
             }
     }
 }

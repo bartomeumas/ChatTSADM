@@ -15,7 +15,7 @@
 		02F95A5C2B0B4FAD00F4D5C0 /* TSADMChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F95A5B2B0B4FAD00F4D5C0 /* TSADMChatTests.swift */; };
 		02F95A662B0B4FAD00F4D5C0 /* TSADMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F95A652B0B4FAD00F4D5C0 /* TSADMChatUITests.swift */; };
 		02F95A682B0B4FAD00F4D5C0 /* TSADMChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F95A672B0B4FAD00F4D5C0 /* TSADMChatUITestsLaunchTests.swift */; };
-		220F81412B7930E0006DEF59 /* MessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220F81402B7930E0006DEF59 /* MessagesModel.swift */; };
+		220F81412B7930E0006DEF59 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220F81402B7930E0006DEF59 /* ChatModel.swift */; };
 		220F81462B794B31006DEF59 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220F81452B794B31006DEF59 /* ProfileModel.swift */; };
 		220F81482B794D29006DEF59 /* ProfilePic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220F81472B794D29006DEF59 /* ProfilePic.swift */; };
 		221B12052B7AAB49004944E0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B12042B7AAB49004944E0 /* Message.swift */; };
@@ -63,7 +63,7 @@
 		02F95A612B0B4FAD00F4D5C0 /* TSADMChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSADMChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F95A652B0B4FAD00F4D5C0 /* TSADMChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSADMChatUITests.swift; sourceTree = "<group>"; };
 		02F95A672B0B4FAD00F4D5C0 /* TSADMChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSADMChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		220F81402B7930E0006DEF59 /* MessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesModel.swift; sourceTree = "<group>"; };
+		220F81402B7930E0006DEF59 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		220F81452B794B31006DEF59 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		220F81472B794D29006DEF59 /* ProfilePic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePic.swift; sourceTree = "<group>"; };
 		221B12042B7AAB49004944E0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		220F81442B794B13006DEF59 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				220F81402B7930E0006DEF59 /* MessagesModel.swift */,
+				220F81402B7930E0006DEF59 /* ChatModel.swift */,
 				223798DC2B2A28B300183831 /* LoginModel.swift */,
 				220F81452B794B31006DEF59 /* ProfileModel.swift */,
 				221B12042B7AAB49004944E0 /* Message.swift */,
@@ -362,7 +362,7 @@
 				02F95A472B0B4FAC00F4D5C0 /* TSADMChatApp.swift in Sources */,
 				22865C342B6D9A3100BC3308 /* MessageBubble.swift in Sources */,
 				221B12072B7AC248004944E0 /* UserModel.swift in Sources */,
-				220F81412B7930E0006DEF59 /* MessagesModel.swift in Sources */,
+				220F81412B7930E0006DEF59 /* ChatModel.swift in Sources */,
 				22865C502B76CBA800BC3308 /* MessagesContainer.swift in Sources */,
 				221B12052B7AAB49004944E0 /* Message.swift in Sources */,
 				22865C4E2B76CB1C00BC3308 /* TopChatBar.swift in Sources */,

@@ -14,7 +14,6 @@ struct MessageBubble: View {
     var body: some View {
         HStack {
             if sender == LoginModel().getUser() {
-                // Sender's message: Spacer on the left
                 Spacer()
                 VStack {
                     Text(sender)
