@@ -11,9 +11,9 @@ import SwiftUI
 struct UserModel: Identifiable, Hashable {
     let id: String // Unique identifier for the message
     let name: String
-    let thumbnail: Image?
+    let thumbnail: UIImage?
 
-    init(id: String, name: String, thumbnail: Image?) {
+    init(id: String, name: String, thumbnail: UIImage?) {
         self.id = id
         self.name = name
         self.thumbnail = thumbnail

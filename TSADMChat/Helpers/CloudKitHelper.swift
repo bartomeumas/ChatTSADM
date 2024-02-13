@@ -24,8 +24,9 @@ struct CloudKitHelper {
         return record.recordName
     }
     
-    func fetchUserInfo(userId: String, completion: @escaping (Result<String, FetchError>) -> Void) {
+    func fetchUserInfo(userId: String, completion: @escaping (Result<(name: String, thumbnail: CKAsset?), FetchError>) -> Void) {
         let recordID = CKRecord.ID(recordName: userId)
+
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let error = error {
                 completion(.failure(.cloudKitError(error)))
@@ -37,13 +38,18 @@ struct CloudKitHelper {
                 return
             }
 
-            if let name = record["name"] as? String {
-                completion(.success(name))
-            } else {
+            // Retrieve name and thumbnail (with error handling)
+            guard let name = record["name"] as? String else {
                 completion(.failure(.recordNotFound))
+                return
             }
+
+            let thumbnail = record["thumbnail"] as? CKAsset
+
+            completion(.success((name: name, thumbnail: thumbnail)))
         }
     }
+
  
     public func updateUser(newName: String?, thumbnail: CKAsset?) async throws -> Result<Void, Error> {
         let recordID = try await myUserRecordID()
@@ -135,8 +141,7 @@ struct CloudKitHelper {
         }
       }
     }
-
-    
+  
     public func checkForSubscriptions() async throws -> CKSubscription? {
         let db = CKContainer.default().publicCloudDatabase
         let subscriptions = try await db.allSubscriptions()

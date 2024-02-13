@@ -6,15 +6,18 @@
 //
 
 import Foundation
+import PhotosUI
 
 struct Message: Identifiable, Hashable {
     let id: String // Unique identifier for the message
-    let sender: String
+    let senderName: String
+    let senderThumbnail: UIImage?
     let text: String
 
-    init(id: String, sender: String, text: String) {
+    init(id: String, senderName: String, senderThumbnail: UIImage?, text: String) {
         self.id = id
-        self.sender = sender
+        self.senderName = senderName
+        self.senderThumbnail = senderThumbnail
         self.text = text
     }
 
