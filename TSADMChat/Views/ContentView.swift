@@ -14,9 +14,9 @@ import UserNotifications
 struct ContentView: View {
     @State var isActive = false
     @StateObject var loginModel = LoginModel()
-    @ObservedObject var chatModel = ChatModel()
-    @State private var loadingData = true
-
+    @ObservedObject var chatModel = ChatModel(cloudKitHelper: CloudKitHelper())
+    @State var loading = true
+    
     let center = UNUserNotificationCenter.current()
     
     init() {
@@ -40,8 +40,11 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            if self.isActive && loadingData == false {
-                if loginModel.isLoggedIn {
+            if self.isActive {
+                if (loading == true) {
+                    LoadingIndicator()
+                }
+                else if loginModel.isLoggedIn {
                     ChatView(chatModel: chatModel)
                 }
                 else {
@@ -54,14 +57,16 @@ struct ContentView: View {
         }
         .onAppear {
             Task {
-                await chatModel.prepareData()
-                
                 let userName = loginModel.getUser()
+                await chatModel.prepareData()
+                loading = false
                 
                 if (userName.isEmpty == false) {
+                    loading = true
                     await loginModel.login(userName: userName)
+                    loading = false
                 }
-                loadingData = false
+                
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                             withAnimation {
