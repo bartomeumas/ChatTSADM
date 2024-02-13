@@ -19,8 +19,9 @@ struct BottomChatBar : View {
                             Button {
                                 guard message.count > 0 else { return }
                                 Task {
-                                    await chatModel.sendMessage(message)
+                                    let sentMessage = message
                                     message = ""
+                                    await chatModel.sendMessage(sentMessage)
                                 }
                             } label: {
                                 Image(systemName: "paperplane")
