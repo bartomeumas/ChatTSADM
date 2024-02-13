@@ -121,6 +121,7 @@ struct CloudKitHelper {
       let subscription = CKQuerySubscription(recordType: "Message", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
       let notification = CKSubscription.NotificationInfo()
 
+      notification.soundName = "chan.aiff"
       notification.title = "New message"
       notification.alertBody = "%K"
       notification.soundName = "default"

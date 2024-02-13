@@ -12,18 +12,27 @@ import CloudKit
 import UserNotifications
 
 struct ContentView: View {
-    
     @State var isActive = false
     @StateObject var loginModel = LoginModel()
-    @ObservedObject var chatModel = ChatModel()
+    @ObservedObject var chatModel:ChatModel
     
     let center = UNUserNotificationCenter.current()
     
     init() {
+        self.chatModel = ChatModel(cloudKitHelper: CloudKitHelper())
            center.requestAuthorization(options: [.sound , .alert , .badge ], completionHandler: { (granted, error) in
                if let error = error {
                    print(error)
                    // Handle the error here.
+               }else if granted{
+                   print("Notification granted")
+                   
+                   DispatchQueue.main.async {
+                       UIApplication.shared.registerForRemoteNotifications()
+                   }
+                   
+               }else{
+                   print("Notification failed")
                }
            })
        }
@@ -44,7 +53,6 @@ struct ContentView: View {
         }
         .onAppear {
             Task {
-                try await CloudKitHelper().checkForSubscriptions()
                                 
                 await chatModel.prepareData()
                 
