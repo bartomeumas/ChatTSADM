@@ -122,6 +122,26 @@ struct CloudKitHelper {
         try await db.save(message)
     }
     
+    public func subscribeToNotifications() {
+      let predicate = NSPredicate(value: true)
+      let subscription = CKQuerySubscription(recordType: "Message", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
+      let notification = CKSubscription.NotificationInfo()
+
+      notification.soundName = "chan.aiff"
+      notification.title = "New message"
+      notification.alertBody = "%K"
+      notification.soundName = "default"
+      subscription.notificationInfo = notification
+        
+      CKContainer.default().publicCloudDatabase.save(subscription) { returnedSubscription, returnedError in
+        if let error = returnedError {
+          print(error)
+        } else {
+          print("Subscribed")
+        }
+      }
+    }
+  
     public func checkForSubscriptions() async throws -> CKSubscription? {
         let db = CKContainer.default().publicCloudDatabase
         let subscriptions = try await db.allSubscriptions()
