@@ -9,14 +9,30 @@ import SwiftUI
 
 struct MessageBubble: View {
     var message: String
-    @State var sender: String
+    @State var senderName: String
+    @State var senderThumbnail: UIImage?
 
     var body: some View {
         HStack {
-            if sender == LoginModel().getUser() {
+            if senderName == LoginModel().getUser() {
                 Spacer()
+                if (senderThumbnail != nil) {
+                    Image(uiImage: senderThumbnail!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                }
+                else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        .foregroundColor(Color(.systemBlue))
+                }
                 VStack {
-                    Text(sender)
+                    Text(senderName)
                         .font(.system(size: 12))
                         .multilineTextAlignment(.leading)
                     Text(message)
@@ -28,9 +44,23 @@ struct MessageBubble: View {
                 .cornerRadius(20)
                 .foregroundStyle(.white)
             } else {
-                // Recipient's message: Spacer on the right
+                if (senderThumbnail != nil) {
+                    Image(uiImage: senderThumbnail!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                }
+                else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        .foregroundColor(Color(.systemBlue))
+                }
                 VStack {
-                    Text(sender)
+                    Text(senderName)
                         .font(.system(size: 12))
                         .multilineTextAlignment(.leading)
                     Text(message)

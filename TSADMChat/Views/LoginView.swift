@@ -30,7 +30,6 @@ struct LoginView: View {
                     .frame(height: 20)
                 Button {
                     Task {
-                        print("login")
                         await loginModel.login(userName: username)
                     }
                 } label: {

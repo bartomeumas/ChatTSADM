@@ -45,7 +45,16 @@ extension UIImage {
             try self.pngData()?.write(to: imageFilePath)
             return CKAsset(fileURL: imageFilePath)
         } catch {
-            print("Error converting UIImage to CKAsset!")
+            return nil
+        }
+        return nil
+    }
+}
+
+extension CKAsset {
+    func toUIImage() -> UIImage? {
+        if let data = NSData(contentsOf: self.fileURL!) {
+            return UIImage(data: data as Data)
         }
         return nil
     }

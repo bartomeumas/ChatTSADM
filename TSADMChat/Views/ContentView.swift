@@ -22,8 +22,7 @@ struct ContentView: View {
     init() {
            center.requestAuthorization(options: [.sound , .alert , .badge ], completionHandler: { (granted, error) in
                if let error = error {
-                   print(error)
-                   // Handle the error here.
+                   return
                }
            })
        }

@@ -24,8 +24,9 @@ struct CloudKitHelper {
         return record.recordName
     }
     
-    func fetchUserInfo(userId: String, completion: @escaping (Result<String, FetchError>) -> Void) {
+    func fetchUserInfo(userId: String, completion: @escaping (Result<(name: String, thumbnail: CKAsset?), FetchError>) -> Void) {
         let recordID = CKRecord.ID(recordName: userId)
+
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let error = error {
                 completion(.failure(.cloudKitError(error)))
@@ -37,13 +38,18 @@ struct CloudKitHelper {
                 return
             }
 
-            if let name = record["name"] as? String {
-                completion(.success(name))
-            } else {
+            // Retrieve name and thumbnail (with error handling)
+            guard let name = record["name"] as? String else {
                 completion(.failure(.recordNotFound))
+                return
             }
+
+            let thumbnail = record["thumbnail"] as? CKAsset
+
+            completion(.success((name: name, thumbnail: thumbnail)))
         }
     }
+
  
     public func updateUser(newName: String?, thumbnail: CKAsset?) async throws -> Result<Void, Error> {
         let recordID = try await myUserRecordID()
@@ -115,26 +121,6 @@ struct CloudKitHelper {
         let db = CKContainer.default().publicCloudDatabase
         try await db.save(message)
     }
-    
-    public func subscribeToNotifications() {
-      let predicate = NSPredicate(value: true)
-      let subscription = CKQuerySubscription(recordType: "Message", predicate: predicate, subscriptionID: CloudKitHelper.subscriptionID, options: .firesOnRecordCreation)
-      let notification = CKSubscription.NotificationInfo()
-
-      notification.title = "New message"
-      notification.alertBody = "%K"
-      notification.soundName = "default"
-      subscription.notificationInfo = notification
-        
-      CKContainer.default().publicCloudDatabase.save(subscription) { returnedSubscription, returnedError in
-        if let error = returnedError {
-          print(error)
-        } else {
-          print("Subscribed")
-        }
-      }
-    }
-
     
     public func checkForSubscriptions() async throws -> CKSubscription? {
         let db = CKContainer.default().publicCloudDatabase
