@@ -23,7 +23,7 @@ struct MessagesContainer : View {
                         Text("Cargando mensajes...")
                     } else {
                         ForEach(chatModel.messages, id: \.self) { message in
-                            MessageBubble(message: message.text, senderName: message.senderName, senderThumbnail: message.senderThumbnail)
+                            MessageBubble(message: message.text, senderName: message.senderName, senderThumbnail: message.senderThumbnail, chatModel: chatModel)
                         }
                         .frame(maxWidth: .infinity)
                         .background(Color.white)

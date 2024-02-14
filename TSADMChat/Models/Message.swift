@@ -8,7 +8,7 @@
 import Foundation
 import PhotosUI
 
-struct Message: Identifiable, Hashable {
+struct MessageModel: Identifiable, Hashable {
     let id: String // Unique identifier for the message
     let senderName: String
     let senderThumbnail: UIImage?
@@ -27,7 +27,7 @@ struct Message: Identifiable, Hashable {
     }
 
     // Also implement the == operator for comparison:
-    static func ==(lhs: Message, rhs: Message) -> Bool {
+    static func ==(lhs: MessageModel, rhs: MessageModel) -> Bool {
         return lhs.id == rhs.id // Compare based on the unique identifier
     }
 }

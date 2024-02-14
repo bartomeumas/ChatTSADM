@@ -24,7 +24,6 @@
 		223798CE2B2620DE00183831 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798CD2B2620DE00183831 /* SplashView.swift */; };
 		223798D02B26248500183831 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798CF2B26248500183831 /* ChatView.swift */; };
 		223798D22B2624F900183831 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798D12B2624F900183831 /* LoginView.swift */; };
-		223798DD2B2A28B300183831 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798DC2B2A28B300183831 /* LoginModel.swift */; };
 		223CB42C2B7BBC3900C68210 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223CB42B2B7BBC3900C68210 /* LoadingIndicator.swift */; };
 		22865C342B6D9A3100BC3308 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22865C332B6D9A3100BC3308 /* MessageBubble.swift */; };
 		22865C4C2B76C7EA00BC3308 /* BottomChatBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22865C4B2B76C7EA00BC3308 /* BottomChatBar.swift */; };
@@ -72,7 +71,6 @@
 		223798CD2B2620DE00183831 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		223798CF2B26248500183831 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		223798D12B2624F900183831 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		223798DC2B2A28B300183831 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		223CB42B2B7BBC3900C68210 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		22865C332B6D9A3100BC3308 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		22865C4B2B76C7EA00BC3308 /* BottomChatBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomChatBar.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				220F81402B7930E0006DEF59 /* ChatModel.swift */,
-				223798DC2B2A28B300183831 /* LoginModel.swift */,
 				220F81452B794B31006DEF59 /* ProfileModel.swift */,
 				221B12042B7AAB49004944E0 /* Message.swift */,
 				221B12062B7AC248004944E0 /* UserModel.swift */,
@@ -350,7 +347,6 @@
 				223798CE2B2620DE00183831 /* SplashView.swift in Sources */,
 				223798D02B26248500183831 /* ChatView.swift in Sources */,
 				220F81462B794B31006DEF59 /* ProfileModel.swift in Sources */,
-				223798DD2B2A28B300183831 /* LoginModel.swift in Sources */,
 				02F95A472B0B4FAC00F4D5C0 /* TSADMChatApp.swift in Sources */,
 				22865C342B6D9A3100BC3308 /* MessageBubble.swift in Sources */,
 				221B12072B7AC248004944E0 /* UserModel.swift in Sources */,

@@ -15,7 +15,7 @@ struct LoadingIndicator: View {
                 .frame(width: 50, height: 50)
                 .foregroundColor(.black)
 
-            Text("Loading...")
+            Text("Preparando los datos, esto puede tardar un rato...")
                 .font(.caption)
                 .foregroundColor(.black)
         }

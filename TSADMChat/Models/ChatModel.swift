@@ -3,7 +3,9 @@ import CloudKit
 
 class ChatModel: ObservableObject {
     @Published var users: [UserModel] = []
-    @Published var messages: [Message] = []
+    @Published var messages: [MessageModel] = []
+    @Published var isLoggedIn = false
+    @Published var username = ""
 
     init(cloudKitHelper: CloudKitHelper) {
         self.cloudKitHelper = cloudKitHelper
@@ -26,6 +28,31 @@ class ChatModel: ObservableObject {
         }
     }
     
+    func login(userName: String) async {
+        do {
+            try await CloudKitHelper().updateUser(newName: userName, thumbnail: nil)
+            UserDefaults.standard.set(userName, forKey: "username")
+            isLoggedIn = true
+            username = userName
+        }
+        catch {
+            isLoggedIn = false
+        }
+    }
+    
+    func getUserName() -> String {
+        return UserDefaults.standard.string(forKey: "username") ?? ""
+    }
+    
+    func getUser() async ->  UserModel? {
+        do {
+            let id = try await CloudKitHelper().myUserRecordID()
+            return users.first(where: {$0.id == id}) ?? UserModel(id: "1", name: "", thumbnail: nil)
+        } catch {
+            return UserModel(id: "1", name: "", thumbnail: nil)
+        }
+    }
+    
     private func prepareUsers() {
         for id in userIds {
             cloudKitHelper.fetchUserInfo(userId: id) { [self] result in
@@ -39,17 +66,6 @@ class ChatModel: ObservableObject {
         }
     }
     
-    func sendMessage(_ message: String) async {
-        let newMessage = Message(id: UUID().uuidString, senderName: LoginModel().getUser(), senderThumbnail: nil, text: message)
-        
-        messages.append(newMessage)
-            do {
-              try await cloudKitHelper.sendMessage(message)
-            } catch {
-              return
-            }
-        }
-
     private func prepareMessages() async {
         do {
             _ = try await cloudKitHelper.myUserRecordID()
@@ -68,7 +84,7 @@ class ChatModel: ObservableObject {
                 if let sender = users.first(where: { $0.id == senderId }) {
                     let messageId = record.recordID.recordName
                     
-                    let message = Message(id: messageId, senderName: sender.name, senderThumbnail: sender.thumbnail, text: messageText)
+                    let message = MessageModel(id: messageId, senderName: sender.name, senderThumbnail: sender.thumbnail, text: messageText)
                     messages.append(message)
                 } else {
                     return

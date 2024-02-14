@@ -9,11 +9,21 @@ import Foundation
 import SwiftUI
 
 struct TopChatBar : View {
-    @State var username: String = ""
+    @State var chatModel: ChatModel
+    @State var userName = ""
+    @State var thumbnail: UIImage?
     
     var body: some View {
         HStack {
-            Text(username)
+            Text(userName)
+            Spacer()
+            if (thumbnail != nil) {
+                Image(uiImage: (thumbnail)!)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+            }
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -21,5 +31,13 @@ struct TopChatBar : View {
         .font(.largeTitle)
         .background(Color.cyan)
         .foregroundColor(Color.white)
+        .onAppear {
+            Task {
+                userName = chatModel.getUserName()
+                let user = await chatModel.getUser()
+                
+                thumbnail = user?.thumbnail
+            }
+        }
     }
 }

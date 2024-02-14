@@ -14,14 +14,21 @@ struct BottomChatBar : View {
     
     var body: some View {
         HStack {
-                            TextField("Send a message", text: $message)
+                            TextField("Enviar mensaje", text: $message)
                                 .textFieldStyle(.roundedBorder)
                             Button {
                                 guard message.count > 0 else { return }
                                 Task {
-                                    let sentMessage = message
+                                    let sender = await chatModel.getUser()
+                                    let senderName = chatModel.getUserName()
+                                    let newMessage = MessageModel(id: UUID().uuidString, senderName: senderName, senderThumbnail: sender?.thumbnail, text: message)
                                     message = ""
-                                    await chatModel.sendMessage(sentMessage)
+                                        do {
+                                            chatModel.messages.append(newMessage)
+                                          try await CloudKitHelper().sendMessage(message)
+                                        } catch {
+                                          return
+                                        }
                                 }
                             } label: {
                                 Image(systemName: "paperplane")

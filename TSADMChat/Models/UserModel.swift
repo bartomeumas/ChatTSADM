@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct UserModel: Identifiable, Hashable {
-    let id: String // Unique identifier for the message
+    let id: String
     let name: String
     let thumbnail: UIImage?
 
@@ -19,15 +19,15 @@ struct UserModel: Identifiable, Hashable {
         self.thumbnail = thumbnail
     }
 
-    // Implement the hashValue property:
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id) // Use the unique identifier for hashing
+        hasher.combine(id)
     }
 
-    // Also implement the == operator for comparison:
     static func ==(lhs: UserModel, rhs: UserModel) -> Bool {
-        return lhs.id == rhs.id // Compare based on the unique identifier
+        return lhs.id == rhs.id
     }
     
-    
+    public func getProfilePic(userName: String) {
+        
+    }
 }

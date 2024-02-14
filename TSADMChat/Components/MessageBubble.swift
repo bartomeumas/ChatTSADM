@@ -11,10 +11,11 @@ struct MessageBubble: View {
     var message: String
     @State var senderName: String
     @State var senderThumbnail: UIImage?
+    @ObservedObject var chatModel: ChatModel
 
     var body: some View {
         HStack {
-            if senderName == LoginModel().getUser() {
+            if senderName == chatModel.getUserName() {
                 Spacer()
                 if (senderThumbnail != nil) {
                     Image(uiImage: senderThumbnail!)

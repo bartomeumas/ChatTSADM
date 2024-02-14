@@ -128,8 +128,8 @@ struct CloudKitHelper {
       let notification = CKSubscription.NotificationInfo()
 
       notification.soundName = "chan.aiff"
-      notification.title = "New message"
-      notification.alertBody = "%K"
+      notification.title = "Nuevo mensaje"
+      notification.alertBody = "Has recibido un nuevo mensaje"
       notification.soundName = "default"
       subscription.notificationInfo = notification
         

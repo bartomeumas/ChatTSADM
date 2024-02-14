@@ -9,7 +9,7 @@ import SwiftUI
 import CloudKit
 
 struct LoginView: View {
-    @ObservedObject var loginModel : LoginModel
+    @ObservedObject var chatModel : ChatModel
     @State var username: String = UserDefaults.standard.string(forKey: "username") ?? ""
 
     var body: some View {
@@ -30,7 +30,7 @@ struct LoginView: View {
                     .frame(height: 20)
                 Button {
                     Task {
-                        await loginModel.login(userName: username)
+                        await chatModel.login(userName: username)
                     }
                 } label: {
                     HStack {
